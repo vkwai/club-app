@@ -1,19 +1,19 @@
-import React from "react";
+import { FC } from "react";
+import { EventType } from "../Types";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
-import Card from '@mui/material/Card';
-import CardActionArea from '@mui/material/CardActionArea';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+import Card from "@mui/material/Card";
+import CardActionArea from "@mui/material/CardActionArea";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
 
 
-type Props = {};
-
-export const Home = (props: Props) => {
-  const post = {
+export const Home: FC<{}> = (props) => {
+  //note splash is inferred
+  const splash = {
     title: "Title of a longer featured blog post",
     description:
       "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
@@ -21,21 +21,23 @@ export const Home = (props: Props) => {
     imageText: "main image description",
     linkText: "Continue reading…",
   };
-  const featuredPosts = [
+  const featuredPosts: EventType[] = [
     {
+      id: 1,
       title: "Featured post",
-      date: "Nov 12",
+      date: new Date().toISOString(),
       description:
         "This is a wider card with supporting text below as a natural lead-in to additional content.",
-      image: "https://source.unsplash.com/random",
+      imageSource: "https://source.unsplash.com/random",
       imageLabel: "Image Text",
     },
     {
+      id: 2,
       title: "Post title",
-      date: "Nov 11",
+      date: new Date().toISOString(),
       description:
         "This is a wider card with supporting text below as a natural lead-in to additional content.",
-      image: "https://source.unsplash.com/random",
+      imageSource: "https://source.unsplash.com/random",
       imageLabel: "Image Text",
     },
   ];
@@ -51,15 +53,15 @@ export const Home = (props: Props) => {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
-          backgroundImage: `url(${post.image})`,
+          backgroundImage: `url(${splash.image})`,
         }}
       >
         {/* Increase the priority of the hero background image */}
         {
           <img
             style={{ display: "none" }}
-            src={post.image}
-            alt={post.imageText}
+            src={splash.image}
+            alt={splash.imageText}
           />
         }
         <Box
@@ -87,21 +89,21 @@ export const Home = (props: Props) => {
                 color="inherit"
                 gutterBottom
               >
-                {post.title}
+                {splash.title}
               </Typography>
               <Typography variant="h5" color="inherit" paragraph>
-                {post.description}
+                {splash.description}
               </Typography>
               <Link variant="subtitle1" href="#">
-                {post.linkText}
+                {splash.linkText}
               </Link>
             </Box>
           </Grid>
         </Grid>
       </Paper>
       <Grid container spacing={4}>
-        {featuredPosts.map((post) => (
-          <Grid key={post.title} item xs={12} md={6}>
+        {featuredPosts.map((post: EventType) => (
+          <Grid key={post.id} item xs={12} md={6}>
             <CardActionArea component="a" href="#">
               <Card sx={{ display: "flex" }}>
                 <CardContent sx={{ flex: 1 }}>
@@ -109,7 +111,7 @@ export const Home = (props: Props) => {
                     {post.title}
                   </Typography>
                   <Typography variant="subtitle1" color="text.secondary">
-                    {post.date}
+                    {post.date.toString()}
                   </Typography>
                   <Typography variant="subtitle1" paragraph>
                     {post.description}
@@ -121,7 +123,7 @@ export const Home = (props: Props) => {
                 <CardMedia
                   component="img"
                   sx={{ width: 160, display: { xs: "none", sm: "block" } }}
-                  image={post.image}
+                  image={post.imageSource}
                   alt={post.imageLabel}
                 />
               </Card>

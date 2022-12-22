@@ -1,22 +1,26 @@
-import { EventList } from "./components/EventList";
+import { Route, Routes } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import { Home } from "./components/Home";
+import { Home } from "./pages/Home";
 import Container from "@mui/material/Container";
-import { Executives } from "./components/Executives";
+import { Events } from "./pages/Events";
+import { About } from "./pages/About";
 
 export const App = () => {
   return (
-    <div>
+    <>
       <Header />
-      {/* <main></main> */}
-      <Container maxWidth="lg">
-        <EventList />
-        <Home />
-        <Executives/>
+      <Container maxWidth="lg" style={{margin:"10px" }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Events" element={<Events />} />
+          <Route path="/About" element={<About />} />
+        </Routes>
+        {/* <EventList />
+        <Executives /> */}
       </Container>
       <Footer />
-    </div>
+    </>
   );
 };
 

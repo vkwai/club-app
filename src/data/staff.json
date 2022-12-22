@@ -1,0 +1,31 @@
+{
+  "staff": [
+    {
+      "id": 2,
+      "title": "President",
+      "year": 2022,
+      "name": "Anderson Tseng",
+      "email": "pres@langara.ca",
+      "imageSource": "someLink"
+    },
+
+    {
+      "id": 1,
+      "title": "President",
+      "year": 2020,
+      "name": "Rastko",
+      "email": "pres@langara.ca",
+      "imageSource": "someLink"
+
+    },
+    {
+      "id": 2,
+      "title": "Vice President",
+      "year": 2022,
+      "name": "Lucas",
+      "email": "vicepres@langara.ca",
+      "imageSource": "someLink"
+
+    }
+  ]
+}
