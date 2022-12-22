@@ -18,6 +18,7 @@ export const Events: FC<{}> = (props) => {
   const filterList = FILTER_NAMES.map((name: string) => (
     <Button
       key={name}
+      color="secondary"
       onClick={() => {
         setFilter(name);
       }}
@@ -55,19 +56,19 @@ export const Events: FC<{}> = (props) => {
     />
   ));
   return (
-    <>
+    <Container sx={{ py: 8 }} maxWidth="md">
       <ButtonGroup
         variant="contained"
         aria-label="outlined primary button group"
       >
         {filterList}
       </ButtonGroup>
-      {filter}
-      <Container sx={{ py: 8 }} maxWidth="md">
-        <Grid container spacing={4}>
-          {formattedData}
-        </Grid>
-      </Container>
-    </>
+      <br />
+      <br />
+      <br />
+      <Grid container spacing={4}>
+        {formattedData}
+      </Grid>
+    </Container>
   );
 };

@@ -7,10 +7,6 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActionArea from "@mui/material/CardActionArea";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 
 type splashType = {
   title: string;
@@ -23,12 +19,12 @@ type splashType = {
 export const Home: FC<{}> = (props) => {
   //note splash is inferred
   const splash: splashType = {
-    title: "Title of a longer featured blog post",
+    title: "Langara Computer Science Club",
     description:
-      "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+      "Welcome! The Langara Computer Science Club is officially back! We are a student-run club dedicated to providing a space for students interested in computer science at Langara to learn, network, help each other out, and have fun! This year, we plan to host workshops, programming competitions, and meetups. ",
     image: "https://source.unsplash.com/random",
     imageText: "main image description",
-    linkText: "Continue reading…",
+    linkText: "Join Our Discord to Learn More",
   };
   const [events, setEvents] = useState<EventType[]>(EventData["events"]);
   const upcomingEvents = events.filter((x) => new Date(x.date) > new Date());
@@ -58,11 +54,10 @@ export const Home: FC<{}> = (props) => {
           backgroundImage: `url(${splash.image})`,
         }}
       >
-        {/* Increase the priority of the hero background image */}
         {
           <img
             style={{ display: "none" }}
-            src={splash.image}
+            src={splash.linkText}
             alt={splash.imageText}
           />
         }
@@ -77,7 +72,7 @@ export const Home: FC<{}> = (props) => {
           }}
         />
         <Grid container>
-          <Grid item md={6}>
+          <Grid item md={7}>
             <Box
               sx={{
                 position: "relative",
@@ -88,7 +83,7 @@ export const Home: FC<{}> = (props) => {
               <Typography
                 component="h1"
                 variant="h3"
-                color="inherit"
+                color="primary"
                 gutterBottom
               >
                 {splash.title}
@@ -96,7 +91,11 @@ export const Home: FC<{}> = (props) => {
               <Typography variant="h5" color="inherit" paragraph>
                 {splash.description}
               </Typography>
-              <Link variant="subtitle1" href="#">
+              <Link
+                variant="subtitle1"
+                color="secondary"
+                href="https://discord.gg/VgKxme4"
+              >
                 {splash.linkText}
               </Link>
             </Box>

@@ -27,16 +27,21 @@ export const About: FC<{}> = (props) => {
       return 1;
     }
   });
-  console.log(filteredStaff);
+  //   console.log(filteredStaff);
 
   const handleChange = (event: SelectChangeEvent) => {
     setYear(parseInt(event.target.value));
   };
   return (
     <div>
-      <h1>{year}</h1>
+      put article data here (will push footer down)
+      <br />
+      <br />
+      <br />
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Year</InputLabel>
+        <InputLabel id="demo-simple-select-label" color="secondary">
+          Year
+        </InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -51,6 +56,11 @@ export const About: FC<{}> = (props) => {
           ))}
         </Select>
       </FormControl>
+      <ul>
+        {filteredStaff.map((member) => (
+          <li key={member.id}>{member.name}</li>
+        ))}
+      </ul>
     </div>
   );
 };

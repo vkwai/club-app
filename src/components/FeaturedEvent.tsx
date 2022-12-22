@@ -25,7 +25,7 @@ export const FeaturedEvent: FC<EventType> = (props) => {
             <Typography variant="subtitle1" paragraph>
               {brief}
             </Typography>
-            <Typography variant="subtitle1" color="primary">
+            <Typography variant="subtitle1" color="secondary">
               Continue reading...
             </Typography>
           </CardContent>

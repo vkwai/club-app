@@ -1,6 +1,4 @@
 import { FC } from "react";
-import { useParams } from "react-router-dom";
-import EventData from "../data/events.json";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
@@ -52,14 +50,8 @@ const options = {
 function Markdown(props: any) {
   return <ReactMarkdown options={options} {...props} />;
 }
-export const EventPage: FC<{}> = (props) => {
-  const { idParam } = useParams();
-  const data = EventData["events"].filter(
-    (event) => event.id.toString() === idParam
-  )[0];
-  //   console.log(data);
-  const { id, title, date, description, imageSource } = data;
-
+export const Contact: FC<{}> = (props) => {
+  const post = "Contact infor .....";
   return (
     <Grid
       item
@@ -72,13 +64,11 @@ export const EventPage: FC<{}> = (props) => {
       }}
     >
       <Typography variant="h6" gutterBottom>
-        {title}
+        Contact
       </Typography>
-      {date}
       <Divider />
-      <img src={imageSource}></img>
-      <Markdown className="markdown" key={description.substring(0, 40)}>
-        {description}
+      <Markdown className="markdown" key={post.substring(0, 40)}>
+        {post}
       </Markdown>
     </Grid>
   );

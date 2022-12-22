@@ -7,14 +7,18 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
+import { Paper } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
+import Avatar from "@mui/material";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 
+import logo from "../static/LCS.png";
+
 export const Header: FC<{}> = (props) => {
-  const pages = ["Events", "About"];
+  const pages = ["Events", "About", "Contact"];
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
@@ -30,7 +34,8 @@ export const Header: FC<{}> = (props) => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
+
           <Typography
             variant="h6"
             noWrap
@@ -46,7 +51,8 @@ export const Header: FC<{}> = (props) => {
               textDecoration: "none",
             }}
           >
-            Home
+            <img src={logo} style={{ height: "90px", width: "90px" }}></img>
+            {/* Home */}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
