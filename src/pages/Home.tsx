@@ -1,5 +1,7 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { EventType } from "../Types";
+import { FeaturedEvent } from "../components/FeaturedEvent";
+import EventData from "../data/events.json";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
@@ -10,10 +12,17 @@ import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 
+type splashType = {
+  title: string;
+  description: string;
+  image: string;
+  imageText: string;
+  linkText: string;
+};
 
 export const Home: FC<{}> = (props) => {
   //note splash is inferred
-  const splash = {
+  const splash: splashType = {
     title: "Title of a longer featured blog post",
     description:
       "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
@@ -21,26 +30,19 @@ export const Home: FC<{}> = (props) => {
     imageText: "main image description",
     linkText: "Continue reading…",
   };
-  const featuredPosts: EventType[] = [
-    {
-      id: 1,
-      title: "Featured post",
-      date: new Date().toISOString(),
-      description:
-        "This is a wider card with supporting text below as a natural lead-in to additional content.",
-      imageSource: "https://source.unsplash.com/random",
-      imageLabel: "Image Text",
-    },
-    {
-      id: 2,
-      title: "Post title",
-      date: new Date().toISOString(),
-      description:
-        "This is a wider card with supporting text below as a natural lead-in to additional content.",
-      imageSource: "https://source.unsplash.com/random",
-      imageLabel: "Image Text",
-    },
-  ];
+  const [events, setEvents] = useState<EventType[]>(EventData["events"]);
+  const upcomingEvents = events.filter((x) => new Date(x.date) > new Date());
+  upcomingEvents.sort(function (a, b) {
+    return new Date(a.date).valueOf() - new Date(b.date).valueOf();
+  });
+
+  const featuredEvents: EventType[] = [];
+  for (let i = 0; i < 4; i++) {
+    //incase of < 4 events in collection
+    if (upcomingEvents[i]) {
+      featuredEvents.push(upcomingEvents[i]);
+    }
+  }
 
   return (
     <>
@@ -102,33 +104,18 @@ export const Home: FC<{}> = (props) => {
         </Grid>
       </Paper>
       <Grid container spacing={4}>
-        {featuredPosts.map((post: EventType) => (
-          <Grid key={post.id} item xs={12} md={6}>
-            <CardActionArea component="a" href="#">
-              <Card sx={{ display: "flex" }}>
-                <CardContent sx={{ flex: 1 }}>
-                  <Typography component="h2" variant="h5">
-                    {post.title}
-                  </Typography>
-                  <Typography variant="subtitle1" color="text.secondary">
-                    {post.date.toString()}
-                  </Typography>
-                  <Typography variant="subtitle1" paragraph>
-                    {post.description}
-                  </Typography>
-                  <Typography variant="subtitle1" color="primary">
-                    Continue reading...
-                  </Typography>
-                </CardContent>
-                <CardMedia
-                  component="img"
-                  sx={{ width: 160, display: { xs: "none", sm: "block" } }}
-                  image={post.imageSource}
-                  alt={post.imageLabel}
-                />
-              </Card>
-            </CardActionArea>
-          </Grid>
+        {featuredEvents.map((event: EventType) => (
+          <FeaturedEvent
+            // props={event}
+            key={event.id}
+            id={event.id}
+            title={event.title}
+            date={event.date}
+            brief={event.brief}
+            description={event.description}
+            imageLabel={event.imageLabel}
+            imageSource={event.imageSource}
+          />
         ))}
       </Grid>
     </>

@@ -42,15 +42,16 @@ export const Events: FC<{}> = (props) => {
   });
   // filteredEvents.reverse();
 
-  const formattedData = filteredEvents.map((d) => (
+  const formattedData = filteredEvents.map((event) => (
     <Event
-      key={d.id}
-      id={d.id}
-      title={d.title}
-      date={d.date}
-      description={d.description}
-      imageSource={d.imageSource}
-      imageLabel={d.imageLabel}
+      key={event.id}
+      id={event.id}
+      title={event.title}
+      date={event.date}
+      brief={event.brief}
+      description={event.description}
+      imageSource={event.imageSource}
+      imageLabel={event.imageLabel}
     />
   ));
   return (

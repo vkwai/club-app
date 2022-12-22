@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 
 export const Header: FC<{}> = (props) => {
-  const pages = ["Products", "Pricing", "Blog"];
+  const pages = ["Events", "About"];
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
@@ -28,10 +28,6 @@ export const Header: FC<{}> = (props) => {
 
   return (
     <AppBar position="static">
-      <Link to="/">Home</Link>
-      <Link to="/Events">Events</Link>
-      <Link to="/About">About</Link>
-
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -83,7 +79,13 @@ export const Header: FC<{}> = (props) => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography
+                    textAlign="center"
+                    component={Link}
+                    to={`/${page}`}
+                  >
+                    {page}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -113,6 +115,8 @@ export const Header: FC<{}> = (props) => {
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
+                component={Link}
+                to={`/${page}`}
               >
                 {page}
               </Button>

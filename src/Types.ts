@@ -2,6 +2,7 @@ export type EventType = {
   id: number;
   title: string;
   date: string;
+  brief: string;
   description: string;
   imageSource: string;
   imageLabel: string;
